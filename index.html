@@ -73,28 +73,42 @@
             font-weight: bold;
             color: #ff4d4d;
         }
+        .reset-button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        .reset-button:hover {
+            background-color: #cc3333;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Maafkan Aku</h1>
+        <h1>Adinda Febriana Putri maafkan aku</h1>
         <div class="heart">&#10084;</div>
-        <p>Aku tahu aku telah melakukan kesalahan. Cintaku padamu lebih besar dari apapun.</p>
-        <p>Maukah kau memaafkanku dan memberi kita kesempatan lagi?</p>
-        <p>Aku berjanji akan menjadi lebih baik untukmu.</p>
+        <p>Sayang aku minta maaf lewat sini aku gatau lagi gimana biar kamu luluh lagi sama aku.</p>
+        <p>mau ga maafin aku tetep </p>
+        <p>aku janji ga gitu lagi plis jangan kesel ya kali ini hehe</p>
         <div id="answerStatus"></div>
         <div id="formContainer">
             <div class="checkbox-container">
                 <label>
-                    <input type="checkbox" name="forgiveness" value="yes"> Ya, aku memaafkanmu
+                    <input type="checkbox" name="forgiveness" value="yes"> iya di maapin
                 </label>
                 <label>
-                    <input type="checkbox" name="forgiveness" value="no"> Tidak, aku belum bisa memaafkanmu
+                    <input type="checkbox" name="forgiveness" value="no"> g
                 </label>
             </div>
             <button class="button" onclick="sendAnswer()">Kirim Jawaban</button>
         </div>
         <div id="result"></div>
+        <button class="reset-button" onclick="resetForm()">Reset Jawaban</button> <!-- Tombol Reset -->
     </div>
 
     <script>
@@ -130,11 +144,11 @@
             }
 
             var message = answer === 'yes' ? 
-                'Terima kasih telah memaafkanku. Aku berjanji akan menjadi lebih baik.' :
-                'Aku mengerti. Aku akan berusaha lebih keras untuk mendapatkan maafmu.';
+                'Maaci ya sayang udah maafin aku' :
+                'yauda gapapa sayang aku ngerti kamu lagi cape banget tp aku bohongin kamu :().';
 
             var resultDiv = document.getElementById('result');
-            resultDiv.innerHTML = 'Jawaban Anda: ' + message;
+            resultDiv.innerHTML = 'Jawaban Adinda cantik: ' + message;
 
             // Simpan status jawaban
             localStorage.setItem('answerStatus', answer);
@@ -144,6 +158,20 @@
                 alert('Jawaban Anda telah berhasil disimpan.');
                 checkAnswerStatus(); // Perbarui tampilan status
             }, 1000);
+        }
+
+        function resetForm() {
+            // Hapus status jawaban yang tersimpan
+            localStorage.removeItem('answerStatus');
+            // Reset tampilan form
+            document.getElementById('formContainer').style.display = 'block';
+            document.getElementById('result').innerHTML = '';
+            document.getElementById('answerStatus').innerHTML = 'Anda belum menjawab.';
+            // Hapus pilihan checkbox yang dipilih
+            var checkboxes = document.getElementsByName('forgiveness');
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = false;
+            }
         }
 
         // Periksa status jawaban saat halaman dimuat
